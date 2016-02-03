@@ -14,12 +14,12 @@
 #
 development:
   adapter:  postgresql
-  host:     localhost
+  host:     <%= ENV["DATABASE_HOST"] %>
   encoding: unicode
-  database: orbiter-3-calendar_development
+  database: <%= ENV["DATABASE_NAME"] %>
   pool:     5
-  username: orbiter-3-calendar
-  password:
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
