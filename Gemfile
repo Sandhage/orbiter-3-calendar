@@ -9,7 +9,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-gem 'figaro', '~> 1.1', '>= 1.1.1' # set env variables
+gem 'figaro', '~> 1.1', '>= 1.1.1'          # set environment variables
+gem 'simple_calendar', '~> 2.0', '>= 2.0.3' # salendar gem
 
 group :development, :test do
   gem 'byebug'

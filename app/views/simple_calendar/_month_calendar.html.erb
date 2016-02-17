@@ -1,0 +1,45 @@
+<div class="simple-calendar">
+  <%= link_to "Previous", start_date: date_range.first - 1.day  %>
+  <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+  <%= link_to "Next", start_date: date_range.last + 1.day  %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <!-- this is where we put things for each day -->
+              <% claimed_day = Day.find_by_date(day) %>
+              <% if claimed_day %>
+                <p>Claimed by: <%= claimed_day.user.email %></p>
+                <% if user_signed_in? && claimed_day.user == current_user %>
+                  <% tweeted_day = day.strftime('%a, %d %b, %Y')  %>
+                  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://google.com" data-text="Yo! The Button works. Do not press. <%= tweeted_day %>" data-via="syzygygerund" data-size="large" data-hashtags="thisisthetest">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <% end %>
+              <% else %>
+                <p><%= link_to 'Claim', claim_day_days_path(day) %></p>
+              <% end %>
+              <% if defined?(Haml) && block_is_haml?(block) %>
+                <% capture_haml do %>
+                  <% block.call day, sorted_events.fetch(day, []) %>
+                <% end %>
+              <% else %>
+                <% block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
