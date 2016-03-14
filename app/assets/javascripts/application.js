@@ -15,3 +15,15 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+    dropNav();
+});
+
+function dropNav() {
+  	$('.dropdown').hover(function() {
+		$(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown(90);
+	}, function() {
+		$(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp(90);
+	});  
+}

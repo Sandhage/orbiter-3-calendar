@@ -1,0 +1,7 @@
+<!-- This is the day-page that will be called from the calendar -->
+<!-- It will stand in for days whether they exist as objects or not -->
+<% # render 'days/day_logic' %>
+
+<h1><%= @cash_donor.name %></h1>
+<h2><%= @cash_donor.day_claimed %></h2>
+<p><%= link_to 'Back to calendar', days_path %></p>

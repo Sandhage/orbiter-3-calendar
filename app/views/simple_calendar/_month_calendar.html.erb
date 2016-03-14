@@ -19,15 +19,31 @@
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <!-- this is where we put things for each day -->
               <% claimed_day = Day.find_by_date(day) %>
-              <% if claimed_day %>
+              <% cash_donor  = CashDonor.find_by_day_claimed(day)%>
+              
+              <% # Cash donor  %>
+              <% if cash_donor %>
+               <p>Claimed by: <%= link_to cash_donor.name, cash_donor_path(cash_donor) %></p>
+               
+               <% # Link to Day view for cash donor %>
+               <p><%= link_to 'View day for cash donor', active_day_day_path(cash_donor) %></p>
+              
+              <% # Regular user %>
+              <% elsif claimed_day %>
                 <p>Claimed by: <%= claimed_day.user.email %></p>
+                
+                <% # Link to Day view for regular user %>
+                <p><%= link_to 'View day for regular user', day_path(claimed_day) %></p>
+                
                 <% if user_signed_in? && claimed_day.user == current_user %>
                   <% tweeted_day = day.strftime('%a, %d %b, %Y')  %>
                   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://google.com" data-text="Yo! The Button works. Do not press. <%= tweeted_day %>" data-via="syzygygerund" data-size="large" data-hashtags="thisisthetest">Tweet</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                 <% end %>
               <% else %>
-                <p><%= link_to 'Claim', claim_day_days_path(day) %></p>
+              
+                <% # No view at the moment for unclaimed day %>
+                
               <% end %>
               <% if defined?(Haml) && block_is_haml?(block) %>
                 <% capture_haml do %>

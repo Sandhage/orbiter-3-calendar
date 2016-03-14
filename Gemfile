@@ -9,8 +9,10 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-gem 'figaro', '~> 1.1', '>= 1.1.1'          # set environment variables
-gem 'simple_calendar', '~> 2.0', '>= 2.0.3' # salendar gem
+gem 'figaro', '~> 1.1', '>= 1.1.1'           # set environment variables
+gem 'simple_calendar', '~> 2.0', '>= 2.0.3'  # calendar gem
+gem 'omniauth-facebook', '~> 3.0'            # facebook login gem
+gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1' # twitter login gem
 
 group :development, :test do
   gem 'byebug'
