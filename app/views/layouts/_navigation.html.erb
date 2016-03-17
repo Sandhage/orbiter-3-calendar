@@ -1,8 +1,16 @@
 <%# navigation styled for Bootstrap 3.0 %>
-<nav>
+<nav class="orb-nav hidden-nav">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav" id="nav-center">
 		  <%= render 'layouts/navigation_links' %>
 		</ul>
 	</div>
 </nav>
+<nav class="orb-nav failsafe-nav">
+	<div class="container-fluid">
+		<ul class="nav navbar-nav" id="nav-center">
+		  <%= render 'layouts/navigation_links' %>
+		</ul>
+	</div>
+</nav>
+

@@ -1,0 +1,31 @@
+<h2>TEST</h2>
+<%= form_for @cash_donor do |f| %>
+    <div class="form-group">
+        <%= f.label      :name, class: "label-text" %>
+        <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label      :email, class: "label-text" %>
+        <%= f.text_field :email, class: "form-control", required: true %>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label :day_claimed, class: "label-text"%>
+        <%= f.text_field  :day_claimed, class: "form-control", required: true %>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label   :donation_amount, class: "label-text" %>
+        <%= f.text_field :donation_amount, class: "form-control", required: true %>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label     :message, class: "label-text" %>
+        <%= f.text_area :message, class: "form-control", required: false %>
+    </div>
+    
+    <div class="actions">
+        <%= f.submit 'Submit', class: "btn btn-large btn-primary" %>
+    </div>
+<% end %>

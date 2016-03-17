@@ -1,2 +1,7 @@
 <h2>Hello World!</h2>
 <p><%= @cash_donor.name %></p>
+<p><%= @cash_donor.day_claimed %></p>
+<p>$<%= @cash_donor.donation_amount %></p>
+<% if user_signed_in? && current_user.admin? %>
+    <p><%= link_to 'Edit This Cash Donor\'s Info', edit_cash_donor_path(@cash_donor) %></p>
+<% end %>

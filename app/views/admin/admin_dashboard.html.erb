@@ -1,2 +1,11 @@
-<h1>Blublublububluh</h1>
 <h2>Admin Dashboard</h2>
+<% unconfirmed_days = Day.where(donation_confirmed: false) %>
+<% confirmed_days = Day.where(donation_confirmed: true) %>
+
+<% unconfirmed_days.each do |unconfirmed_day| %>
+    <p><%= unconfirmed_day.date %> <%= link_to 'Confirm Donation', confirm_donation_day_path(unconfirmed_day) %></p>
+<% end %>
+
+<% confirmed_days.each do |confirmed_day| %>
+    <p>Payment for <%= confirmed_day.date %> has been confirmed</p>
+<% end %>

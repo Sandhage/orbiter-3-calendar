@@ -11,10 +11,11 @@ class DaysController < ApplicationController
     end
   end
   
+  def show_unclaimed
+    @date = params[:format]
+  end
+  
   def active_day
-    # @cash_donors  = CashDonor.all
-    # @claimed_days = Day.all
-    
     @cash_donor = CashDonor.find(params[:id])
   end
   
@@ -30,5 +31,13 @@ class DaysController < ApplicationController
     if @claimed_day.save
       redirect_to root_path
     end
+  end
+  
+  def confirm_donation
+    @day = Day.find(params[:id])
+    @day.donation_confirmed = true
+    @day.save
+    
+    redirect_to admin_dashboard_path
   end
 end
