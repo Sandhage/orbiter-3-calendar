@@ -1,0 +1,15 @@
+.simple-calendar {
+    .day {
+        height: 10%;
+        width:   8%;
+        
+        .claimed-trigger {
+            display: none;
+        }
+        
+    }
+    .claimed {
+        color: #FFF;
+        background-color: #00ff00;
+    }
+}

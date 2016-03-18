@@ -3,16 +3,16 @@
   <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
   <%= link_to "Next", start_date: date_range.last + 1.day  %>
 
-  <div class="container-fluid">
-    <div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
         <% date_range.slice(0, 7).each do |day| %>
-          <div class="col-sm-1">
-            <h3><%= I18n.t("date.abbr_day_names")[day.wday] %></h3>
-          </div>
+          <th><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
         <% end %>
-    </div>
+      </tr>
+    </thead>
 
-    <div class="container">
+    <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
@@ -58,6 +58,6 @@
           <% end %>
         </tr>
       <% end %>
-    </div>
-  </div>
+    </tbody>
+  </table>
 </div>

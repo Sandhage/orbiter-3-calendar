@@ -45,3 +45,7 @@ function fadeMobNav() {
 		}
 	});
 }
+
+function addClaimedClass() {
+	$('.claimed-trigger').parent().addClass('claimed');
+}
