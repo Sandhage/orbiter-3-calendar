@@ -19,6 +19,7 @@
 $(document).ready(function(){
     dropNav();
     fadeMobNav();
+    hoverOverClaimed();
 });
 
 function dropNav() {
@@ -34,12 +35,12 @@ function fadeMobNav() {
 		event.preventDefault();
 		if ( $(this).hasClass('.active') ) {
 			$('.hidden-nav').hide();
-			$('#orb-3-img').show();
+			$('#orb-3-logo').show();
 			$('main').show();
 			$(this).removeClass('.active');
 		} else {
 			$(this).addClass('.active');
-			$('#orb-3-img').hide()
+			$('#orb-3-logo').hide()
 			$('main').hide();
 			$('.hidden-nav').fadeIn(45);
 		}
@@ -48,4 +49,14 @@ function fadeMobNav() {
 
 function addClaimedClass() {
 	$('.claimed-trigger').parent().addClass('claimed');
+}
+
+function hoverOverClaimed() {
+	$('.claimed').on({
+		mouseenter: function() {
+			$(this).children().hide();
+		}, mouseleave: function() {
+			$(this).children().show();
+		}
+	});
 }
