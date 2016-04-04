@@ -17,16 +17,27 @@
  */
 
 /* Orbiter3 Navbar Styles */
+
 html, body {
 	width: 100%;
-	height: 100%;;
+	height: 100%;
 }
 header {
 	width: 100%;
 	background-color: #FFF;
 }
+.navbar {
+	background-image: none;
+	background-color: #FFF;
+	border: none;
+}
 nav.orb-nav.hidden-nav {
 	display: none;
+	text-align: center;
+	
+	div.container-fluid {
+		margin-left: 0%;
+	}
 }
 nav.orb-nav.failsafe-nav {
 	display: none;

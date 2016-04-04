@@ -1,15 +1,45 @@
+/* Simple Calendar Declarations */
 .simple-calendar {
-    .day {
-        height: 10%;
-        width:   8%;
+    display: inline-block;
+    width: 90%;
+    margin: 0 5% 0 5%;
+    
+    .cal-row {
+        clear: left;
+        padding: 0 auto;
         
-        .claimed-trigger {
-            display: none;
+        #month-nav {
+            text-align: center;
         }
-        
+        .day {
+            width: 100/7 * 1%;
+            height: 1.5em;
+            float: left;
+            overflow: hidden;
+            text-align: center;
+            padding: auto;
+            
+            .claimed-trigger, .day-date-raw {
+                display: none;
+            }
+            .day-date-output {
+                margin-top: 37.5%;
+                display: block;
+            }
+        }
+    }
+    .weekdays {
+        text-align: center;
+        width: 100/7 * 1%;
+        float: left;
     }
     .claimed {
+        border-radius: 50%;
         color: #FFF;
         background-color: #00ff00;
+        
+        p {
+            display: none;
+        }
     }
 }

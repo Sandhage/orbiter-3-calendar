@@ -1,60 +1,66 @@
 <div class="simple-calendar">
-  <%= link_to "Previous", start_date: date_range.first - 1.day %>
-  <%= I18n.t("date.abbr_month_names")[start_date.month] %> <%= start_date.year %>
-  <%= link_to "Next", start_date: date_range.last + 1.day %>
+  <div id="month-nav" style="text-align: center;">
+    <%= link_to "<", start_date: date_range.first - 1.day %>
+    <%= I18n.t("date.abbr_month_names")[start_date.month] %> <%= start_date.year %>
+    <%= link_to ">", start_date: date_range.last + 1.day %>
+  </div>
 
   <div class="container-fluid">
-    <div class="row">
-        <% date_range.slice(0, 7).each do |day| %>
-          <div class="col-sm-1">
-            <h3><%= I18n.t("date.abbr_day_names")[day.wday] %></h3>
-          </div>
-        <% end %>
-    </div>
-
-    <div class="container">
-      <% date_range.each_slice(7) do |week| %>
-        <div class="row">
-          <% week.each do |day| %>
-            <%= content_tag :div, class: ["col-sm-1", calendar.td_classes_for(day)] do %>
-              <!-- this is where we put things for each day -->
-              <% claimed_day = Day.find_by_date(day) %>
-              <% cash_donor  = CashDonor.find_by_day_claimed(day)%>
-              
-              <% # Cash donor  %>
-              <% if cash_donor %>
-                <p>Claimed</p>
-                <p>Cash Donor</p>
-                <% # Link to Day view for cash donor %>
-                <p><%= link_to 'View Day', cash_donor_path(cash_donor) %></p>
-                <div class="claimed-trigger"></div>
-                <script type="text/javascript">
-                  addClaimedClass();
-                </script>
-                
-              <% # Regular user %>
-              <% elsif claimed_day %>
-                <p>Claimed</p>
-                <p>Regular User</p>
-                <% # Link to Day view for regular user %>
-                <p><%= link_to 'View Day', day_path(claimed_day) %></p>
-                
-                <div class="claimed-trigger"></div>
-                <script type="text/javascript">
-                  addClaimedClass();
-                </script>
-              <% else %>
-              
-                <% # Link to Unclaimed Day view for regular user %>
-                <% if user_signed_in? %>
-                   <p><%= link_to 'View Day', show_unclaimed_days_path(day) %></p>
-                <% end %>            
-              <% end %>
-              <% block.call day, sorted_events.fetch(day, []) %>
-            <% end %>
-          <% end %>
+    <div class="cal-row"> 
+      <% date_range.slice(0, 7).each do |day| %>
+        <div class="weekdays">
+          <h4><%= I18n.t("date.abbr_day_names")[day.wday] %></h4>
         </div>
       <% end %>
-    </div>
+    </div> 
+
+    <% date_range.each_slice(7) do |week| %>
+      <div class="cal-row">
+        <% week.each do |day| %>
+          <%= content_tag :div, class: [calendar.td_classes_for(day)] do %>
+            <!-- this is where we put things for each day -->
+            <p class="day-date-raw"><% block.call day, sorted_events.fetch(day, []) %></p>
+            <script type="text/javascript">
+                setDayDate();
+                setDayHeight();
+            </script>
+            
+            <% claimed_day = Day.find_by_date(day) %>
+            <% cash_donor  = CashDonor.find_by_day_claimed(day)%>
+            
+            <% # Cash donor  %>
+            <% if cash_donor %>
+              <p class="claimed-info">Claimed</p>
+              <p>Cash Donor</p>
+              <% # Link to Day view for cash donor %>
+              <p class="claimed-info"><%= link_to 'View Day', cash_donor_path(cash_donor) %></p>
+              <div class="claimed-trigger"></div>
+              <script type="text/javascript">
+                addClaimedClass();
+              </script>
+              
+            <% # Regular user %>
+            <% elsif claimed_day %>
+              <p class="claimed-info">Claimed</p>
+              <p>Regular User</p>
+              <% # Link to Day view for regular user %>
+              <p  class="claimed-info"><%= link_to 'View Day', day_path(claimed_day) %></p>
+              
+              <div class="claimed-trigger"></div>
+              <script type="text/javascript">
+                addClaimedClass();
+              </script>
+            <% else %>
+            
+              <% # Link to Unclaimed Day view for regular user %>
+              <% if user_signed_in? %>
+                 <p><%= link_to 'View Day', show_unclaimed_days_path(day) %></p>
+              <% end %>            
+            <% end %>
+            <p class="day-date-output"></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

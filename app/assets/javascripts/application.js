@@ -16,11 +16,31 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(document).ready(function(){
+// On document ready
+$(document).ready(function() {
+	setDayHeight();
     dropNav();
     fadeMobNav();
-    hoverOverClaimed();
+    // hoverOverClaimed();
 });
+
+
+// Functions defined
+function setDayHeight() {
+	// Set initial height
+	var setHeight = function() {
+		$('.day').each(function() {
+			$(this).height($(this).width());
+		});
+	}
+	
+	setHeight();
+	
+	// Maintain height on window resize
+	$(window).resize(function() {
+		setHeight();
+	});
+}
 
 function dropNav() {
   	$('.dropdown').hover(function() {
@@ -31,16 +51,20 @@ function dropNav() {
 }
 
 function fadeMobNav() {
+	// Fix funky error with mobile nav href
+	$('li.mob-nav > a').attr("href", "#");
+	
+	// Make mobile navigation a click event
 	$('.mob-nav').click(function() {
 		event.preventDefault();
 		if ( $(this).hasClass('.active') ) {
 			$('.hidden-nav').hide();
-			$('#orb-3-logo').show();
+			$('.orbiter-3-logo').show();
 			$('main').show();
 			$(this).removeClass('.active');
 		} else {
 			$(this).addClass('.active');
-			$('#orb-3-logo').hide()
+			$('.orbiter-3-logo').hide()
 			$('main').hide();
 			$('.hidden-nav').fadeIn(45);
 		}
@@ -52,11 +76,32 @@ function addClaimedClass() {
 }
 
 function hoverOverClaimed() {
+	var claimedInfo = $('.claimed-info');
+	
 	$('.claimed').on({
 		mouseenter: function() {
-			$(this).children().hide();
+			$('.day-date-output').hide();
+			claimedInfo.show();
+			// $(this).children().hide();
 		}, mouseleave: function() {
-			$(this).children().show();
+			$('.day-date-output').show();
+			// $(this).children().show();
+			$('.day-date-raw').hide();
 		}
 	});
+}
+
+function setDayDate() {
+	var rawDate    = null;
+	var dateOutput = null;
+	
+	$('.day').each(function() {
+		
+		rawDate = this.firstElementChild.innerHTML;
+		dateOutput = rawDate.charAt(15) + rawDate.charAt(16);
+		this.lastElementChild.innerHTML = dateOutput;		
+		
+		console.log(rawDate);
+	});
+
 }
