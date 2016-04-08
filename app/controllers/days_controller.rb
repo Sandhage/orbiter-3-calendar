@@ -16,17 +16,31 @@ class DaysController < ApplicationController
   end
   
   def active_day
-    @cash_donor = CashDonor.find(params[:id])
+    @claimed_day = Day.find(params[:id])
+  end
+  
+  def create
+    logger.debug(claimed_day_params)
+    @claimed_day = Day.new(claimed_day_params)
+    @claimed_day.user_id = current_user.id
+    
+    if @claimed_day.save
+      redirect_to root_path
+    else
+      flash[:alert] = 'Oops! Looks like that didn\'t work -- let\'s try again...'
+      render 'new'
+    end
+  end
+  
+  def new
+    @claimed_day       = Day.new
+    @claimed_day.date  = params[:format]
   end
   
   def claim_day
-    puts "JLHAJHSADKJHAFDKJLHASD;LHASFDKLH;ASDF;KJLASDF;KJLASDF;KJASDF;KJLASDF;KJLASDFKJL;ASDFKJL"
-    puts params[:format]
-    
-    @claimed_day = Day.new
-    
+    @claimed_day         = Day.new
     @claimed_day.user_id = current_user.id
-    @claimed_day.date = params[:format]
+    @claimed_day.date    = params[:format]
     
     if @claimed_day.save
       redirect_to root_path
@@ -39,5 +53,11 @@ class DaysController < ApplicationController
     @day.save
     
     redirect_to admin_dashboard_path
+  end
+  
+  private
+  def claimed_day_params
+    params.require(:day).permit(:name, :date, :donation_amount, :message)
+    # params.require(:claimed_day).permit(:name, :date, :donation_amount, :message)  
   end
 end

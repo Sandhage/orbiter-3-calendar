@@ -1,10 +1,16 @@
 <div class="simple-calendar">
   <div id="month-nav" style="text-align: center;">
-    <%= link_to "<", start_date: date_range.first - 1.day %>
-    <%= I18n.t("date.abbr_month_names")[start_date.month] %> <%= start_date.year %>
-    <%= link_to ">", start_date: date_range.last + 1.day %>
+    <ul style="padding: 0;">
+      <li class="previous-month" style="display: inline;"><%= link_to "<", start_date: date_range.first - 1.day %></li>
+      <li style="display: inline;" id="current-month"><%= I18n.t("date.abbr_month_names")[start_date.month] %> <%= start_date.year %></li>
+      <li class="next-month" style="display: inline;"><%= link_to ">", start_date: date_range.last + 1.day %></li>
+    </ul>
   </div>
-
+  
+  <script type="text/javascript">
+        setCurrentMonth();
+  </script>
+  
   <div class="container-fluid">
     <div class="cal-row"> 
       <% date_range.slice(0, 7).each do |day| %>
@@ -23,6 +29,8 @@
             <script type="text/javascript">
                 setDayDate();
                 setDayHeight();
+                blockApril();
+                clickClaimed();
             </script>
             
             <% claimed_day = Day.find_by_date(day) %>
@@ -44,7 +52,7 @@
               <p class="claimed-info">Claimed</p>
               <p>Regular User</p>
               <% # Link to Day view for regular user %>
-              <p  class="claimed-info"><%= link_to 'View Day', day_path(claimed_day) %></p>
+              <p class="claimed-info"><%= link_to 'View Day', day_path(claimed_day) %></p>
               
               <div class="claimed-trigger"></div>
               <script type="text/javascript">
@@ -54,7 +62,7 @@
             
               <% # Link to Unclaimed Day view for regular user %>
               <% if user_signed_in? %>
-                 <p><%= link_to 'View Day', show_unclaimed_days_path(day) %></p>
+                 <p class="claim-link"><%= link_to 'View Day', show_unclaimed_days_path(day) %></p>
               <% end %>            
             <% end %>
             <p class="day-date-output"></p>

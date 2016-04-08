@@ -1,18 +1,13 @@
 <h2>Claim This Day</h2>
-<%= form_for @cash_donor do |f| %>
+<%= form_for @claimed_day do |f| %>
     <div class="form-group">
         <%= f.label      :name, class: "label-text" %>
         <%= f.text_field :name, class: "form-control", required: true %>
     </div>
     
     <div class="form-group">
-        <%= f.label      :email, class: "label-text" %>
-        <%= f.text_field :email, class: "form-control", required: true %>
-    </div>
-    
-    <div class="form-group">
-        <%= f.label       :day_claimed, class: "label-text"%>
-        <%= f.text_field  :day_claimed, class: "form-control", required: true %>
+        <%= f.label       :date, class: "label-text"%>
+        <%= f.text_field  :date, class: "form-control", required: true %>
     </div>
     
     <div class="form-group">

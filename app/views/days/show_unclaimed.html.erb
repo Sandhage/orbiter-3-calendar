@@ -1,6 +1,6 @@
 <h2><%= @date %> has not been claimed yet!</h2>
 <% if user_signed_in? %>
-    <p>Click here to <%= link_to 'claim this day', claim_day_days_path(@date) %> this day.</p>
+    <p>Click here to <%= link_to 'claim this day', new_day_path(@date) %> this day.</p> <!-- new_day_path claim_day_days_path -->
     <% if current_user.admin? %>
         <p>Click here to <%= link_to 'add a cash donor', new_cash_donor_path(@date) %></p>
     <% end %>

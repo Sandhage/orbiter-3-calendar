@@ -16,12 +16,32 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+// Global variables and objects
+var currentMonth   = null;
+var totalDonations = null;
+var aprilCheck     = false;
+
+var mayDonations       = new monthlyDonation("May",       "", 0);
+	juneDonations      = new monthlyDonation("June",      "", 0);
+	julyDonations      = new monthlyDonation("July",      "", 0);
+	augustDonations    = new monthlyDonation("August",    "", 0);
+	septemberDonations = new monthlyDonation("September", "", 0);
+	octoberDonations   = new monthlyDonation("October",   "", 0);
+	novemberDonations  = new monthlyDonation("November",  "", 0);
+	decemberDontaions  = new monthlyDonation("December",  "", 0);
+	januaryDonations   = new monthlyDonation("January",   "", 0);
+	februaryDonations  = new monthlyDonation("February",  "", 0);
+	marchDonations     = new monthlyDonation("March",     "", 0);
+	aprilDonations     = new monthlyDonation("April",     "", 0);
+
+
 // On document ready
 $(document).ready(function() {
 	setDayHeight();
+	setCurrentMonth();
     dropNav();
     fadeMobNav();
-    // hoverOverClaimed();
+    clickClaimed();
 });
 
 
@@ -75,18 +95,19 @@ function addClaimedClass() {
 	$('.claimed-trigger').parent().addClass('claimed');
 }
 
-function hoverOverClaimed() {
-	var claimedInfo = $('.claimed-info');
-	
+function clickClaimed() {
 	$('.claimed').on({
-		mouseenter: function() {
-			$('.day-date-output').hide();
-			claimedInfo.show();
-			// $(this).children().hide();
-		}, mouseleave: function() {
-			$('.day-date-output').show();
-			// $(this).children().show();
-			$('.day-date-raw').hide();
+		click: function() {
+			if ( $(this).hasClass('shown') ) {
+				$(this).children('.claimed-info').hide();
+				$(this).removeClass('shown');
+			} else {
+				$('.shown > .claimed-info').hide();
+				$('.claimed').removeClass('shown');
+				
+				$(this).addClass('shown');
+				$(this).children('.claimed-info').show();
+			}
 		}
 	});
 }
@@ -96,12 +117,44 @@ function setDayDate() {
 	var dateOutput = null;
 	
 	$('.day').each(function() {
-		
 		rawDate = this.firstElementChild.innerHTML;
 		dateOutput = rawDate.charAt(15) + rawDate.charAt(16);
 		this.lastElementChild.innerHTML = dateOutput;		
-		
-		console.log(rawDate);
 	});
+}
 
+function setCurrentMonth() {
+	var monthRaw    = null;
+	var monthOutput = null;
+	
+	// Grab current displayed month and assign it to variable for month donation counter
+	monthRaw     = $('#current-month').text();
+	monthOutput  = monthRaw.charAt(0) + monthRaw.charAt(1) + monthRaw.charAt(2);
+	currentMonth = monthOutput;
+
+	if ( monthRaw != "Apr 2016" ) {
+		aprilCheck = false;
+	} else {
+		aprilCheck = true;
+	}
+	
+	console.log("monthRaw: "     + monthRaw);
+	console.log("dateOutput: "   + monthOutput);
+	console.log("currentMonth: " + currentMonth);
+	console.log("April? " + aprilCheck );
+	
+}
+
+function monthlyDonation(month, matchDonor, total) {
+  this.month      = month;
+  this.matchDonor = matchDonor;
+  this.total      = total;
+}
+
+function blockApril() {
+	if ( aprilCheck ) {
+		$('.claim-link').hide();
+	} else {
+		$('.claim-link').show();
+	}
 }
