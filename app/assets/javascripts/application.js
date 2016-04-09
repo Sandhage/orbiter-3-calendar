@@ -41,7 +41,6 @@ $(document).ready(function() {
 	setCurrentMonth();
     dropNav();
     fadeMobNav();
-    clickClaimed();
 });
 
 
@@ -93,6 +92,7 @@ function fadeMobNav() {
 
 function addClaimedClass() {
 	$('.claimed-trigger').parent().addClass('claimed');
+	$('.unclaimed-trigger').parent().addClass('unclaimed');
 }
 
 function clickClaimed() {
@@ -104,9 +104,9 @@ function clickClaimed() {
 			} else {
 				$('.shown > .claimed-info').hide();
 				$('.claimed').removeClass('shown');
-				
 				$(this).addClass('shown');
 				$(this).children('.claimed-info').show();
+				console.log("Clicked.");
 			}
 		}
 	});
@@ -119,7 +119,7 @@ function setDayDate() {
 	$('.day').each(function() {
 		rawDate = this.firstElementChild.innerHTML;
 		dateOutput = rawDate.charAt(15) + rawDate.charAt(16);
-		this.lastElementChild.innerHTML = dateOutput;		
+		this.lastElementChild.innerHTML = dateOutput;
 	});
 }
 
@@ -132,14 +132,13 @@ function setCurrentMonth() {
 	monthOutput  = monthRaw.charAt(0) + monthRaw.charAt(1) + monthRaw.charAt(2);
 	currentMonth = monthOutput;
 
-	if ( monthRaw != "Apr 2016" ) {
-		aprilCheck = false;
-	} else {
+	// Set aprilCheck variable to block claim links in April 2016
+	if ( monthRaw == "Apr 2016" ) {
 		aprilCheck = true;
+	} else {
+		aprilCheck = false;
 	}
 	
-	console.log("monthRaw: "     + monthRaw);
-	console.log("dateOutput: "   + monthOutput);
 	console.log("currentMonth: " + currentMonth);
 	console.log("April? " + aprilCheck );
 	
@@ -153,8 +152,8 @@ function monthlyDonation(month, matchDonor, total) {
 
 function blockApril() {
 	if ( aprilCheck ) {
-		$('.claim-link').hide();
+		$('.unclaimed-link').hide();
 	} else {
-		$('.claim-link').show();
+		$('.unclaimed-link').show();
 	}
 }

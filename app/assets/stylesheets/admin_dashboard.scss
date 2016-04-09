@@ -1,0 +1,17 @@
+/* Admin Dashboard declarations */
+.admin-dashboard {
+    font-family: "Roboto", sans-serif;
+    
+    h1 {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+    a.confirm, a.confirm:focus, a.confirm:focus {
+        color: #0eFF0e;
+        text-decoration: none;
+    }
+    a.destroy, a.destroy:focus, a.destroy:hover {
+        color: steelblue;
+        text-decoration: none;
+    }
+}

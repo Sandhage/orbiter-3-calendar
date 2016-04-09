@@ -1,54 +1,84 @@
 /* Simple Calendar Declarations */
 .simple-calendar {
     display: inline-block;
-    width: 90%;
+    width:            90%;
     margin: 0 2.5% 0 2.5%;
+    font-family: "Roboto", sans-serif;
+    
+    a {
+        font-family: inherit;   
+    }
+    
+    #month-nav {
+        font-size:      3em;
+        color:      #00ff00;
+        margin-bottom: 25px;
+        
+        a, a:focus, a:hover {
+            color: #00ff00;
+        }
+    }
     
     .cal-row {
-        clear: left;
-        padding: 0 auto;
+        clear:            left;
+        padding:        0 auto;
+        background-color: #eee;
         
-        #month-nav {
-            text-align: center;
-        }
         .day {
-            width: 100/7 * 1%;
-            height: 1.5em;
-            float: left;
-            overflow: hidden;
+            width:  100/7 * 1%;
+            height:      1.5em;
+            float:        left;
+            overflow:   hidden;
             text-align: center;
-            padding: auto;
+            padding-top:  auto;
             
+            p {
+                margin-top: 5%;   
+            }
             .claimed-trigger, .day-date-raw {
                 display: none;
             }
             .day-date-output {
-                margin-top: 37.5%;
-                display: block;
+                margin-top: 32.5%;
+                display:    block;
             }
         }
     }
     .weekdays {
         text-align: center;
-        width: 100/7 * 1%;
-        float: left;
+        width:  100/7 * 1%;
+        float:        left;
     }
     .claimed {
-        border-radius: 50%;
-        color: #FFF;
+        border-radius:        50%;
+        color:               #FFF;
         background-color: #00ff00;
         
+        a {
+            color: #FFF;    
+        }
         p {
             display: none;
+        }
+        .shown {
+            display: block;
+        }
+    }
+    .unclaimed {
+        border-radius:     50%;
+        background-color: #EEE;
+        
+        a {
+            color: #000;    
         }
     }
 }
 
 @media screen and (min-width: 992px) {
     .simple-calendar {
-        .claimed {
+        .claimed,
+        .unclaimed {
             border-radius: 0%;
-        }        
+        }
     }
-
 }

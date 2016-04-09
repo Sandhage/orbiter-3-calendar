@@ -1,11 +1,28 @@
-<h2>Admin Dashboard</h2>
-<% unconfirmed_days = Day.where(donation_confirmed: false) %>
-<% confirmed_days = Day.where(donation_confirmed: true) %>
-
-<% unconfirmed_days.each do |unconfirmed_day| %>
-    <p><%= unconfirmed_day.date %> <%= link_to 'Confirm Donation', confirm_donation_day_path(unconfirmed_day) %></p>
-<% end %>
-
-<% confirmed_days.each do |confirmed_day| %>
-    <p>Payment for <%= confirmed_day.date %> has been confirmed</p>
-<% end %>
+<div class="container-fluid admin-dashboard">
+    <h1>Admin Dashboard</h1>
+    <% unconfirmed_days = Day.where(donation_confirmed: false) %>
+    <% confirmed_days = Day.where(donation_confirmed: true) %>
+    
+    <div class="row">
+        <div class="col-xs-0 col-md-2"></div>
+        <div class="col-xs-12 col-md-3">
+            <% unconfirmed_days.each do |unconfirmed_day| %>
+                <p>
+                   <%= unconfirmed_day.date %> 
+                   <%= link_to 'CONFIRM', confirm_donation_day_path(unconfirmed_day), :class => "confirm" %>
+                       
+                    OR 
+                                
+                   <%= link_to 'DELETE', delete_reservation_day_path(unconfirmed_day), method: :delete, data: { confirm: 'Are you sure about this?' }, :class => "destroy" %>
+                </p>
+            <% end %>
+        </div>
+        <div class="col-xs-0 col-md-2"></div>
+        <div class="col-xs-12 col-md-3">
+            <% confirmed_days.each do |confirmed_day| %>
+                <p>Payment for <%= confirmed_day.date %> has been confirmed</p>
+            <% end %>
+        </div>
+        <div class="col-xs-0 col-md-2"></div>
+    </div>
+</div>

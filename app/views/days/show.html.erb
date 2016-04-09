@@ -1,3 +1,6 @@
 <h1><%= @claimed_day.date %></h1>
 <h2>Claimed by regular user <%= @claimed_day.user.name %></h2>
 <p><%= link_to 'Back to calendar', days_path %></p>
+<p><%= link_to 'Delete', @claimed_day,
+                       method: :delete,
+                       data: { confirm: 'Are you sure about this?' }%></p>

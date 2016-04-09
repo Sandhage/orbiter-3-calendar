@@ -30,7 +30,6 @@
                 setDayDate();
                 setDayHeight();
                 blockApril();
-                clickClaimed();
             </script>
             
             <% claimed_day = Day.find_by_date(day) %>
@@ -38,8 +37,6 @@
             
             <% # Cash donor  %>
             <% if cash_donor %>
-              <p class="claimed-info">Claimed</p>
-              <p>Cash Donor</p>
               <% # Link to Day view for cash donor %>
               <p class="claimed-info"><%= link_to 'View Day', cash_donor_path(cash_donor) %></p>
               <div class="claimed-trigger"></div>
@@ -49,10 +46,8 @@
               
             <% # Regular user %>
             <% elsif claimed_day %>
-              <p class="claimed-info">Claimed</p>
-              <p>Regular User</p>
               <% # Link to Day view for regular user %>
-              <p class="claimed-info"><%= link_to 'View Day', day_path(claimed_day) %></p>
+              <p class="claimed-info"><%= link_to 'VIEW', day_path(claimed_day) %></p>
               
               <div class="claimed-trigger"></div>
               <script type="text/javascript">
@@ -62,7 +57,12 @@
             
               <% # Link to Unclaimed Day view for regular user %>
               <% if user_signed_in? %>
-                 <p class="claim-link"><%= link_to 'View Day', show_unclaimed_days_path(day) %></p>
+                <p class="unclaimed-link"><%= link_to 'CLAIM', show_unclaimed_days_path(day) %></p>
+                 
+                <div class="unclaimed-trigger"></div>
+                <script type="text/javascript">
+                  addClaimedClass();
+                </script>
               <% end %>            
             <% end %>
             <p class="day-date-output"></p>
@@ -72,3 +72,7 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+    clickClaimed();
+</script>

@@ -33,6 +33,13 @@ class CashDonorsController < ApplicationController
     end
   end
   
+  def destroy
+    @cash_donor = CashDonor.find(params[:id])
+    @cash_donor.destroy
+  
+    redirect_to root_path
+  end
+  
   private
   def cash_donor_params
     params.require(:cash_donor).permit(:name, :email, :day_claimed, :donation_amount, :message)  
