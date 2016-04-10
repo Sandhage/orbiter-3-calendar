@@ -1,9 +1,18 @@
 .show-day {
     font-family: "Roboto", sans-serif;
     font-size: 1.25em;
+    width: 100%;
     
-    .widget-container {
+    .container-fluid {
+        text-align: center;
         
+        .message {
+            margin-top: 35px;
+        }
+    }
+    .widget-container {
+        margin-top:    50px;
+        margin-bottom: 25px;
         > p {
             font-weight:  bold;
             font-style: italic;   
