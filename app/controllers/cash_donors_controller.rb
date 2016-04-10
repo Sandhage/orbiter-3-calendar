@@ -6,7 +6,7 @@ class CashDonorsController < ApplicationController
   def create
     @cash_donor = CashDonor.create(cash_donor_params)
     if @cash_donor.save
-      redirect_to root_path
+      redirect_to @cash_donor
     else
       flash[:alert] = 'Oops! Looks like that didn\'t work -- let\'s try again...'
       render 'new'
@@ -26,7 +26,7 @@ class CashDonorsController < ApplicationController
     @cash_donor = CashDonor.find(params[:id])
     
     if @cash_donor.update_attributes(cash_donor_params)
-      redirect_to root_path
+      redirect_to @cash_donor
     else
       flash[:alert] = 'Oops! Looks like that didn\'t work -- let\'s try again...'
       render 'edit'
