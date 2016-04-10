@@ -1,0 +1,48 @@
+.registration {
+    font-family: "Roboto", sans-serif;
+    
+    div.row {
+    
+        #sign-in, #sign-up {
+            margin: 0 5% 0 5%;
+        }
+        #oauth-links{
+            text-align: center;
+            
+            ul {
+                padding: 0;
+            }
+            li {
+                margin-bottom: 25px;
+            }
+        }
+    
+    }
+}
+@media screen and (min-width: 992px) {
+    .registration {
+        
+        div.row {
+            
+            #sign-in {
+                float:      left;
+                margin-right: 0%;
+                margin-left: 10%;
+            }
+            #oauth-links{
+                text-align:   center;
+                margin:  75px 0 0 6%;
+                font-weight:    bold;
+                
+                li {
+                    margin-bottom: 25px;
+                }
+            }
+            #sign-up {
+                float:      right;
+                margin-right: 10%;
+                margin-left:   0%;
+            }
+        }
+    }
+}

@@ -1,6 +1,23 @@
-<h1><%= @claimed_day.date %></h1>
-<h2>Claimed by regular user <%= @claimed_day.user.name %></h2>
-<p><%= link_to 'Back to calendar', days_path %></p>
-<p><%= link_to 'Delete', @claimed_day,
-                       method: :delete,
-                       data: { confirm: 'Are you sure about this?' }%></p>
+<div class="show-day">
+    <h1><%= @claimed_day.date.strftime("%B %d, %Y") %></h1>
+    <h2>Claimed by <%= @claimed_day.user.name %></h2>
+    <p><%= link_to 'Back to calendar', days_path %></p>
+    <p class="message">From <%= @claimed_day.user.name %>: "<%= @claimed_day.message %>"</p>
+    
+    <% if user_signed_in? %>
+    <p>current user: <%= current_user.id %> / claimed user: <%= @claimed_day.user_id %></p>
+    <% end %>
+    
+    <% if user_signed_in? && current_user.admin? %>
+        <p><%= link_to 'Delete', @claimed_day,
+                               method: :delete,
+                               data: { confirm: 'Are you sure about this?' } %></p>
+    <% end %>
+    
+    <% if user_signed_in? && current_user.id === @claimed_day.user_id %>
+        <div class="widget-container">
+            <p>Please use the following widget to donate to to Orbiter 3 through Fractured Atlas:</p>
+            <div id="donation"></div>
+        </div>
+    <% end %>
+</div>

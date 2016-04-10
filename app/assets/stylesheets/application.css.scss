@@ -23,7 +23,7 @@ html, body {
 	height: 100%;
 }
 header {
-	width: 100%;
+	width:            100%;
 	background-color: #FFF;
 }
 main {
@@ -33,10 +33,10 @@ main {
 .navbar {
 	background-image: none;
 	background-color: #FFF;
-	border: none;
+	border:           none;
 }
 nav.orb-nav.hidden-nav {
-	display:    none;
+	display:      none;
 	text-align: center;
 	
 	div.container-fluid {
@@ -45,43 +45,56 @@ nav.orb-nav.hidden-nav {
 }
 nav.orb-nav.failsafe-nav {
 	display: none;
+	padding: 10px;
 	
 	.container {
 		display: block;
+	}
+	
+	li {
+		padding-top: 0;
+	}
+	.orbiter-3-logo {
+		padding: 0;
+		
+		a {
+			padding: 0;
+			margin:  0;
+		}
 	}
 	
 }
 .orb-nav {
 	.nav>li>a:focus, .nav>li>a:hover {
 		background-color: #FFF;
-		color: #a6a6a6;
+		color:         #a6a6a6;
 	}
 	.dropdown-menu {
-		border: none;
+		border:     none;
 		box-shadow: none;
 		border-radius: 0;
 	}
 	.container-fluid {
-		height: 64px;
+		height:      64px;
 		margin-left: 50px;
 	}
 	.container-fluid #orb-3-img {
-		padding-top: 2.5px;
+		padding-top:    2.5px;
 		padding-bottom: 2.5px;
 	}
 	a {
-		margin-top: 7.5px;
-		margin-right: 7.5px;
-		margin-bottom: 7.5px;
+		margin-top:                 7.5px;
+		margin-right:               7.5px;
+		margin-bottom:              7.5px;
 		font-family: "Roboto", sans-serif;
-	    font-size: 16px;
-	    text-transform: uppercase;
-	    text-decoration: none;
-	    letter-spacing: 1px;
-	    font-weight: 400;
-	    font-style: normal;
-	    line-height: 1em;
-	    color: #000;
+	    font-size:                   16px;
+	    text-transform:         uppercase;
+	    text-decoration:             none;
+	    letter-spacing:               1px;
+	    font-weight:                  400;
+	    font-style:                normal;
+	    line-height:                  1em;
+	    color:                       #000;
 	}
 }
 

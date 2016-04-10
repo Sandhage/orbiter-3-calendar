@@ -1,10 +1,14 @@
 <div class="simple-calendar">
   <div id="month-nav" style="text-align: center;">
+    <h1>the oCal</h2>
     <ul style="padding: 0;">
       <li class="previous-month" style="display: inline;"><%= link_to "<", start_date: date_range.first - 1.day %></li>
       <li style="display: inline;" id="current-month"><%= I18n.t("date.abbr_month_names")[start_date.month] %> <%= start_date.year %></li>
       <li class="next-month" style="display: inline;"><%= link_to ">", start_date: date_range.last + 1.day %></li>
     </ul>
+    <% if user_signed_in? == false %>
+      <h4>Please sign in above in order to use the calendar</h4>
+    <% end %>
   </div>
   
   <script type="text/javascript">
@@ -27,9 +31,9 @@
             <!-- this is where we put things for each day -->
             <p class="day-date-raw"><% block.call day, sorted_events.fetch(day, []) %></p>
             <script type="text/javascript">
-                setDayDate();
-                setDayHeight();
-                blockApril();
+                // setDayDate();
+                // setDayHeight();
+                // blockApril();
             </script>
             
             <% claimed_day = Day.find_by_date(day) %>
@@ -57,17 +61,18 @@
             
               <% # Link to Unclaimed Day view for regular user %>
               <% if user_signed_in? %>
-                <p class="unclaimed-link"><%= link_to 'CLAIM', show_unclaimed_days_path(day) %></p>
+                <p id="unclaimed-link"><%= link_to 'CLAIM', show_unclaimed_days_path(day) %></p>
                  
-                <div class="unclaimed-trigger"></div>
-                <script type="text/javascript">
-                  addClaimedClass();
-                </script>
               <% end %>            
             <% end %>
             <p class="day-date-output"></p>
           <% end %>
         <% end %>
+        <script type="text/javascript">
+                setDayDate();
+                setDayHeight();
+                blockApril();
+        </script>
       </div>
     <% end %>
   </div>

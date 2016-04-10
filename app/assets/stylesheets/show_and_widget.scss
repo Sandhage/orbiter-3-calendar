@@ -1,0 +1,12 @@
+.show-day {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.25em;
+    
+    .widget-container {
+        
+        > p {
+            font-weight:  bold;
+            font-style: italic;   
+        }
+    }
+}

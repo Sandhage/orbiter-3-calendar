@@ -1,12 +1,12 @@
 /* Simple Calendar Declarations */
 .simple-calendar {
     display: inline-block;
-    width:            90%;
-    margin: 0 2.5% 0 2.5%;
+    width:            100%;
+    margin-left:        0%;
     font-family: "Roboto", sans-serif;
     
     a {
-        font-family: inherit;   
+        font-family: inherit;
     }
     
     #month-nav {
@@ -14,8 +14,15 @@
         color:      #00ff00;
         margin-bottom: 25px;
         
+        h1 {
+            margin-top:      0%;
+            margin-bottom: 25px;
+            font-size:    1.5em;
+            font-weight:   bold;
+        }
         a, a:focus, a:hover {
-            color: #00ff00;
+            color:         #00ff00;
+            background-color: #FFF;
         }
     }
     
@@ -39,8 +46,13 @@
                 display: none;
             }
             .day-date-output {
-                margin-top: 32.5%;
+                margin-top: 43.5%;
                 display:    block;
+                color:       #000;
+            }
+            p#unclaimed-link {
+                display:     none;
+                margin-top: 43.5%;
             }
         }
     }
@@ -52,30 +64,30 @@
     .claimed {
         border-radius:        50%;
         color:               #FFF;
-        background-color: #00ff00;
+        background-color: #0eff0e;
         
         a {
             color: #FFF;    
         }
         p {
-            display: none;
+            display:     none;
         }
         .shown {
             display: block;
         }
-    }
-    .unclaimed {
-        border-radius:     50%;
-        background-color: #EEE;
-        
-        a {
-            color: #000;    
+        p.claimed-info {
+            margin-top: 43.5%;
         }
     }
 }
 
 @media screen and (min-width: 992px) {
     .simple-calendar {
+        #month-nav {
+            h1 {
+                font-size: 2em;
+            }
+        }
         .claimed,
         .unclaimed {
             border-radius: 0%;

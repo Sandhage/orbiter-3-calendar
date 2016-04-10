@@ -1,28 +1,57 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>Sign in</h3>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%- if devise_mapping.registerable? %>
-        <%= link_to 'Sign up', new_registration_path(resource_name), class: 'right'  %>
-      <% end -%>
-      <%= f.label :email %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%- if devise_mapping.recoverable? %>
-        <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
-      <% end -%>
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
-      <%= f.submit 'Sign in', :class => 'button right' %>
-      <% if devise_mapping.rememberable? -%>
-        <div class="checkbox" style="width:150px">
-          <label>
-            <%= f.check_box :remember_me %> Remember me
-          </label>
+<div class="container-fluid registration">
+  <div class="row">
+    <div class="authform col-xs-12 col-md-5" id="sign-in">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+        <h3>Sign in</h3>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
         </div>
-      <% end -%>
-  <% end %>
+        <div class="form-group">
+          <%- if devise_mapping.recoverable? %>
+            <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
+          <% end -%>
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+          <%= f.submit 'Sign in', :class => 'button right' %>
+          <% if devise_mapping.rememberable? -%>
+            <div class="checkbox" style="width:150px">
+              <label>
+                <%= f.check_box :remember_me %> Remember me
+              </label>
+            </div>
+          <% end -%>
+      <% end %>
+    </div>
+    
+    <div class="col-xs-12 col-md-2" id="oauth-links">
+      <ul>
+        <li><%= link_to image_tag('facebook.svg', alt: "Facebook Login", width: "50px", class: "facebook"), user_omniauth_authorize_path(:facebook) %></li>
+        <li>OR</li>
+        <li><%= link_to image_tag('twitter.svg', alt: "Twitter Login", width: "50px", class: "twitter"), user_omniauth_authorize_path(:twitter) %></li>
+      </ul>
+    </div>
+    
+    <div class="authform col-xs-12 col-md-5" id="sign-up">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+        <h3>Sign up</h3>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+         <%= f.submit 'Sign up', :class => 'button right' %>
+      <% end %>
+    </div>
+  </div>
 </div>

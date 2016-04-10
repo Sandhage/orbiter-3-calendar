@@ -4,7 +4,7 @@ class DaysController < ApplicationController
   end
   
   def show
-    @claimed_day = Day.find(params[:id])
+    @claimed_day  = Day.find(params[:id])
   end
   
   def show_unclaimed

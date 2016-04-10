@@ -92,24 +92,31 @@ function fadeMobNav() {
 
 function addClaimedClass() {
 	$('.claimed-trigger').parent().addClass('claimed');
-	$('.unclaimed-trigger').parent().addClass('unclaimed');
 }
 
 function clickClaimed() {
-	$('.claimed').on({
+	$('.day').on({
 		click: function() {
 			if ( $(this).hasClass('shown') ) {
 				$(this).children('.claimed-info').hide();
+				$(this).children('#unclaimed-link').hide();
+				$(this).children('.day-date-output').show();
 				$(this).removeClass('shown');
 			} else {
 				$('.shown > .claimed-info').hide();
-				$('.claimed').removeClass('shown');
+				$(this).children('.day-date-output').hide();
+				$('.day').removeClass('shown');
 				$(this).addClass('shown');
 				$(this).children('.claimed-info').show();
+				$(this).children('#unclaimed-link').show();
 				console.log("Clicked.");
 			}
 		}
 	});
+}
+
+function clickUnclaimed() {
+	$('.unclaimed')	
 }
 
 function setDayDate() {
