@@ -6,13 +6,15 @@
     .container-fluid {
         text-align: center;
         
-        .message {
+        .message,
+        .nav-back {
             margin-top: 35px;
         }
     }
     .widget-container {
         margin-top:    50px;
         margin-bottom: 25px;
+  
         > p {
             font-weight:  bold;
             font-style: italic;   

@@ -1,7 +1,7 @@
 <div class="show-day">
     <div class="container-fluid">
         <h1><%= @claimed_day.date.strftime("%B %d, %Y") %></h1>
-        <h2>Claimed by <%= @claimed_day.user.name %></h2>
+        <h3>Claimed by <%= @claimed_day.user.name %></h3    >
         <p class="message">From <%= @claimed_day.user.name %>: "<%= @claimed_day.message %>"</p>
         
         <% if user_signed_in? && current_user.id === @claimed_day.user_id && @claimed_day.donation_confirmed == false %>
@@ -11,14 +11,16 @@
             </div>
         <% end %>
         
-        <p><%= link_to 'Back to calendar', days_path %></p>
-        <% if user_signed_in? && current_user.admin? %>
-            <p><%= link_to 'Delete', @claimed_day,
-                                   method: :delete,
-                                   data: { confirm: 'Are you sure about this?' } %></p>
-        <% end %>
+        <div class="nav-back">
+            <p><%= link_to 'Back to calendar', days_path %></p>
+            <% if user_signed_in? && current_user.admin? %>
+                <p><%= link_to 'Delete', @claimed_day,
+                                       method: :delete,
+                                       data: { confirm: 'Are you sure about this?' } %></p>
+            <% end %>
+        </div>
     </div>
     <% if user_signed_in? %>
-        <p>current user: <%= current_user.id %> / claimed user: <%= @claimed_day.user_id %></p>
+        <!-- <p>current user: <%= current_user.id %> / claimed user: <%= @claimed_day.user_id %></p> -->
     <% end %>
 </div>
