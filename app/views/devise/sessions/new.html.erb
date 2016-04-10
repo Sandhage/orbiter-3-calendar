@@ -26,22 +26,18 @@
       <% end %>
     </div>
     
-    <div class="col-xs-12 col-md-2" id="oauth-links">
-      <ul>
-        <li><%= link_to image_tag('facebook.svg', alt: "Facebook Login", width: "50px", class: "facebook"), user_omniauth_authorize_path(:facebook) %></li>
-        <li>OR</li>
-        <li><%= link_to image_tag('twitter.svg', alt: "Twitter Login", width: "50px", class: "twitter"), user_omniauth_authorize_path(:twitter) %></li>
-      </ul>
-    </div>
+    <!--<div class="col-xs-12 col-md-2" id="oauth-links">-->
+    <!--  <ul>-->
+    <!--    <li><%= link_to image_tag('facebook.svg', alt: "Facebook Login", width: "50px", class: "facebook"), user_omniauth_authorize_path(:facebook) %></li>-->
+    <!--    <li>OR</li>-->
+    <!--    <li><%= link_to image_tag('twitter.svg', alt: "Twitter Login", width: "50px", class: "twitter"), user_omniauth_authorize_path(:twitter) %></li>-->
+    <!--  </ul>-->
+    <!--</div>-->
     
     <div class="authform col-xs-12 col-md-5" id="sign-up">
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
         <h3>Sign up</h3>
         <%= devise_error_messages! %>
-        <div class="form-group">
-          <%= f.label      :name %>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
         <div class="form-group">
           <%= f.label       :email %>
           <%= f.email_field :email, :autofocus => true, class: 'form-control' %>

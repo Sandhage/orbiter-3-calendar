@@ -6,7 +6,6 @@
         
         <% if user_signed_in? && current_user.id === @claimed_day.user_id && @claimed_day.donation_confirmed == false %>
             <div class="widget-container">
-                <p>Please use the following widget to donate to to Orbiter 3 through Fractured Atlas:</p>
                 <div id="donation"></div>
             </div>
         <% end %>
