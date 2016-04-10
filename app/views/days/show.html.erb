@@ -4,13 +4,13 @@
         <h3>Claimed by <%= @claimed_day.name %></h3>
         <p class="message">From <%= @claimed_day.name %>: "<%= @claimed_day.message %>"</p>
         
-        <% if user_signed_in? && current_user.id === @claimed_day.user_id %>
-            <% if @claimed_day.donation_confirmed == false %>
+        <% if user_signed_in? && current_user.id === @claimed_day.user_id && @claimed_day.donation_confirmed == false  %>
+        
                 <div class="widget-container">
                     <p>Please complete your donation using the Fractured Atlas payment system below. Your date claim will be reserved as pending until Orbiter 3 receives receipt of your donation.</p>
                     <div id="donation"></div>
                 </div>
-            <% end %>
+        
         <% end %>
         
         <div class="nav-back">
