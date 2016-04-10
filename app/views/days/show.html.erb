@@ -1,8 +1,8 @@
 <div class="show-day">
     <div class="container-fluid">
         <h1><%= @claimed_day.date.strftime("%B %d, %Y") %></h1>
-        <h3>Claimed by <%= @claimed_day.user.name %></h3    >
-        <p class="message">From <%= @claimed_day.user.name %>: "<%= @claimed_day.message %>"</p>
+        <h3>Claimed by <%= @claimed_day.name %></h3>
+        <p class="message">From <%= @claimed_day.name %>: "<%= @claimed_day.message %>"</p>
         
         <% if user_signed_in? && current_user.id === @claimed_day.user_id && @claimed_day.donation_confirmed == false %>
             <div class="widget-container">

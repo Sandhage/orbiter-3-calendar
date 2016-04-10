@@ -38,6 +38,7 @@
             overflow:   hidden;
             text-align: center;
             padding-top:  auto;
+            font-size:     1em;
             
             p {
                 margin-top: 5%;   
@@ -46,14 +47,17 @@
                 display: none;
             }
             .day-date-output {
-                margin-top: 43.5%;
+                margin-top:   40%;
                 display:    block;
                 color:       #000;
             }
             p#unclaimed-link {
                 display:     none;
-                margin-top: 43.5%;
+                margin-top:   40%;
             }
+        }
+        .day:hover {
+            cursor: pointer;
         }
     }
     .weekdays {
@@ -83,6 +87,13 @@
 
 @media screen and (min-width: 992px) {
     .simple-calendar {
+
+        .cal-row {
+
+            .day {
+                font-size:   1.5em;
+            }
+        }
         #month-nav {
             h1 {
                 font-size: 2em;
