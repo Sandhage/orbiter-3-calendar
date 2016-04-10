@@ -109,14 +109,9 @@ function clickClaimed() {
 				$(this).addClass('shown');
 				$(this).children('.claimed-info').show();
 				$(this).children('#unclaimed-link').show();
-				console.log("Clicked.");
 			}
 		}
 	});
-}
-
-function clickUnclaimed() {
-	$('.unclaimed')	
 }
 
 function setDayDate() {
@@ -145,9 +140,6 @@ function setCurrentMonth() {
 	} else {
 		aprilCheck = false;
 	}
-	
-	console.log("currentMonth: " + currentMonth);
-	console.log("April? " + aprilCheck );
 	
 }
 
