@@ -8,7 +8,8 @@
             <% if current_user.id === @claimed_day.user_id && @claimed_day.donation_confirmed == false %>
                 <div class="widget-container">
                     <p>Please complete your donation using the Fractured Atlas payment system below. Your date claim will be reserved as pending until Orbiter 3 receives receipt of your donation.</p>
-                    <div id="donation"></div>
+                    <a href="https://www.fracturedatlas.org/site/fiscal/profile?id=11285" class="donate-link" target="_blank">DONATE HERE</a>
+                    <!-- <div id="donation"></div> -->
                     <p>(Thank you for donating! This message will dissappear once Orbiter 3 has confirmed your payment.)</p>
                 </div>
             <% end %>
