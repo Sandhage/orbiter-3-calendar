@@ -63,6 +63,7 @@ function fadeMobNav() {
 	// Make mobile navigation a click event
 	$('.mob-nav').click(function() {
 		event.preventDefault();
+		console.log('clicked');
 		if ( $(this).hasClass('.active') ) {
 			$('.hidden-nav').hide();
 			$('.orbiter-3-logo').show();
