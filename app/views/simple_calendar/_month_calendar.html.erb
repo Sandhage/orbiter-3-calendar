@@ -6,13 +6,16 @@
       <li style="display: inline;" id="current-month"><%= I18n.t("date.abbr_month_names")[start_date.month] %> <%= start_date.year %></li>
       <li class="next-month" style="display: inline;"><%= link_to ">", start_date: date_range.last + 1.day %></li>
     </ul>
+
+    <h3 class="match-donor"></h3>
     <% if user_signed_in? == false %>
       <h4>Please sign in above in order to use the calendar</h4>
     <% end %>
   </div>
   
   <script type="text/javascript">
-        setCurrentMonth();
+      setCurrentMonth();
+      setMatchDonor();
   </script>
   
   <div class="container-fluid">

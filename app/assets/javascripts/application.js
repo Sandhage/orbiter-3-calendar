@@ -21,19 +21,6 @@ var currentMonth   = null;
 var totalDonations = null;
 var aprilCheck     = false;
 
-var mayDonations       = new monthlyDonation("May",       "", 0);
-	juneDonations      = new monthlyDonation("June",      "", 0);
-	julyDonations      = new monthlyDonation("July",      "", 0);
-	augustDonations    = new monthlyDonation("August",    "", 0);
-	septemberDonations = new monthlyDonation("September", "", 0);
-	octoberDonations   = new monthlyDonation("October",   "", 0);
-	novemberDonations  = new monthlyDonation("November",  "", 0);
-	decemberDontaions  = new monthlyDonation("December",  "", 0);
-	januaryDonations   = new monthlyDonation("January",   "", 0);
-	februaryDonations  = new monthlyDonation("February",  "", 0);
-	marchDonations     = new monthlyDonation("March",     "", 0);
-	aprilDonations     = new monthlyDonation("April",     "", 0);
-
 
 // On document ready
 $(document).ready(function() {
@@ -143,10 +130,19 @@ function setCurrentMonth() {
 	
 }
 
-function monthlyDonation(month, matchDonor, total) {
-  this.month      = month;
-  this.matchDonor = matchDonor;
-  this.total      = total;
+function setMatchDonor() {
+	if ( currentMonth == "May" ) {
+		$('.match-donor').append("Match Donor: The Gilmore Family");
+		$('.match-donor').show();
+	} else if ( currentMonth == "Jun" ) {
+		$('.match-donor').append("Match Donor: The Williams Family");
+		$('.match-donor').show();
+	} else if ( currentMonth == "Jul" ) {
+		$('.match-donor').append("Match Donor: Gayle Smith");
+		$('.match-donor').show();
+	} else {
+		$('.match-donor').hide();
+	}
 }
 
 function blockApril() {
